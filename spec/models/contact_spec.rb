@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe Contact do
   
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
+  end
+  
   it "has a valid factory" do
     expect(build(:contact)).to be_valid
   end
