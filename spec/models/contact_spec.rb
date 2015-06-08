@@ -10,14 +10,6 @@ describe Contact do
     expect(build(:contact)).to be_valid
   end
   
-  it "is valid with a firstname, lastname and email" do
-    contact = Contact.new(
-      firstname: 'Aaron',
-      lastname: 'Sumner',
-      email: 'tester@example.com')
-    expect(contact).to be_valid
-  end
-  
   it "is invalid without a firstname" do
     contact = build(:contact, firstname: nil)
     contact.valid?
@@ -50,9 +42,12 @@ describe Contact do
   
   describe "filter last name by letter" do
     before :each do
-      @smith = Contact.create(firstname: 'John', lastname: 'Smith', email: 'jsmith@example.com')
-      @jones = Contact.create(firstname: 'Tim', lastname: 'Jones', email: 'tjones@example.com')
-      @johnson = Contact.create(firstname: 'John', lastname: 'Johnson', email: 'jjohnson@example.com')          
+      @smith = create(:contact,
+        lastname: 'Smith', email: 'jsmith@example.com')
+      @jones = create(:contact,
+        lastname: 'Jones', email: 'tjones@example.com')
+      @johnson = create(:contact,
+        lastname: 'Johnson', email: 'jjohnson@example.com')
     end
     
     context "matching letters" do
